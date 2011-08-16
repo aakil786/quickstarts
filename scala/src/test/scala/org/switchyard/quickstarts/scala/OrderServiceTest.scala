@@ -18,8 +18,8 @@ class OrderServiceTest {
     @Test
     def sendOrder() = {
       val invoker = _testKit.newInvoker("OrderService.sendOrder")
-      invoker.sendInOnly("dummy payload")
-      assertTrue(true)
+      val message = invoker.sendInOut("Fletch Lives")
+      assertEquals("processed: Fletch Lives", message.getContent(classOf[String]));
     }
 
 }

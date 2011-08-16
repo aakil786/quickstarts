@@ -7,6 +7,7 @@ class OrderServiceImpl extends OrderService {
   
   def sendOrder(order :String) = {
     println("Order : " + order)
+    "processed: " + order
   }
   
 }
