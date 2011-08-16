@@ -8,11 +8,10 @@ the service will be invoked.
 
 This quickstart uses Scala 2.9.0-1.
 
-----
-
 #Deploying to JBoss AS 7
 1. To install SwitchYard to AS 7 follow the instructions presented [here](http://community.jboss.org/wiki/SwitchYardOnAS7)
 2. Build the quickstart:
+
     `mvn clean install`
     
 3. Add a module for scala.
@@ -39,8 +38,6 @@ You can copy the module definition from _src/test/resources/modules_.
 
     `cp src/test/resources/text.txt target/input`
 
-----
-    
 #Eclipse
 Please not that the same version of Scala should be used in Eclipse. If the versions do not match you may get compilation
 errors. 
