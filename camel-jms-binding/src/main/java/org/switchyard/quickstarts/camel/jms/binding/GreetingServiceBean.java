@@ -19,6 +19,9 @@
 
 package org.switchyard.quickstarts.camel.jms.binding;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.switchyard.component.bean.Service;
 
 /**
@@ -30,9 +33,22 @@ import org.switchyard.component.bean.Service;
 @Service(GreetingService.class)
 public class GreetingServiceBean
     implements org.switchyard.quickstarts.camel.jms.binding.GreetingService {
+    
+     @PersistenceContext (name="CamelJmsBindingUnit")
+     private EntityManager em;
 
     @Override
     public final void greet(final String name) {
-        System.out.println("Hello there " + name + " :-) ");
+        final GreeterEntity greeter = em.find(GreeterEntity.class, name);
+        
+        if (greeter == null) {
+            System.out.println("Hello " + name);
+            em.persist(new GreeterEntity(name));
+//            throw new IllegalArgumentException("Trying to trigger a rollback and redelivery");
+        }
+        else {
+            System.out.println("We have already greeted you " + name);
+        }
     }
+        
 }
