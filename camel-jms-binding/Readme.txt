@@ -14,18 +14,13 @@ JBoss AS 7
     mvn clean install
 3. Start JBoss AS 7 in standalone mode:
     ./standalone --server-config=standalone-preview.xml
-4. Start JBoss CLI and connect: 
+4. Start the database. From your ${AS7} directory run:
+    java -jar modules/com/h2database/h2/main/h2-1.2.145.jar
+5. Create the resources (datasource and queue) 
     ./jboss-admin.sh file=src/main/test/resources/create-resources.cli
 6. Deploy the quickstart
     cp target/switchyard-quickstarts-camel-jms-binding-0.2.0-SNAPSHOT.jar ${AS7}/standalone/deployments
 7. Execute HornetQClient
-    mvn exec:java -Dexec.mainClass="org.switchyard.quickstarts.camel.jms.binding.HornetQClient"
+    mvn exec:java
 8. Check the server console for output from the service.
-
-
-Starting the H2 Database console
---------------------------------
-1. From your ${AS7} directory run:
-    java -jar modules/com/h2database/h2/main/h2-1.2.145.jar
-
 

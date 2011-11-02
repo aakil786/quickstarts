@@ -14,6 +14,7 @@ import javax.jms.Queue;
 import javax.jms.Session;
 import javax.naming.InitialContext;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.switchyard.Exchange;
@@ -55,6 +56,7 @@ public class CamelJMSBindingTest {
     private SwitchYardTestKit _testKit;
     
     @Test
+    @Ignore ("this quickstart has been modified for transactions and currently requires manually testing. See Readme.txt")
     public void sendTextMessageToJMSQueue() throws Exception {
         final String payload = "dummy payload";
         final MockHandler greetingService = _testKit.registerInOnlyService("GreetingService");
