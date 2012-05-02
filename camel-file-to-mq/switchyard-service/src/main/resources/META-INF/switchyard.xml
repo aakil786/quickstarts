@@ -1,0 +1,26 @@
+<switchyard xmlns="urn:switchyard-config:switchyard:1.0"
+            xmlns:swyd="urn:switchyard-config:switchyard:1.0"
+            xmlns:camel="urn:switchyard-component-camel:config:1.0">
+            
+    <composite xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" name="camel-service" targetNamespace="urn:switchyard-quickstart:camel-service:0.1.0">
+        
+        <service name="CamelFileGateway" promote="ActiveMQService">
+            <camel:binding.camel configURI="file://${input.dir}?fileName=test.txt&amp;initialDelay=50&amp;delete=true"/>
+        </service>
+        
+        <component name="ActiveMQService">
+            <implementation.camel xmlns="urn:switchyard-component-camel:config:1.0">
+                <route xmlns="http://camel.apache.org/schema/spring">
+                    <log message="[message] '${body}'"/>
+                    <to uri="activemq:queue:exampleQueue"/>
+                </route>
+            </implementation.camel>
+
+            <service name="ActiveMQServiceInterface">
+                <swyd:interface.esb inputType="java:java.lang.String"/>
+            </service>
+
+        </component>
+        
+    </composite>
+</switchyard>

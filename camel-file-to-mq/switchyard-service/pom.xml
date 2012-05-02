@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.switchyard.quickstarts</groupId>
+	<artifactId>switchyard-quickstart-camel-file-to-mq</artifactId>
+    <version>0.5.0-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <artifactId>switchyard-quickstart-camel-file-to-mq-service</artifactId>
+  <name>SwitchYard - Camel File to ActiveMQ Service</name>
+  <packaging>jar</packaging>
+
+  <properties>
+	<!-- input directory which is the directory that the Camel File Component will "listen" to -->
+	<input.dir>${basedir}/input</input.dir>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.switchyard</groupId>
+      <artifactId>switchyard-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.switchyard</groupId>
+      <artifactId>switchyard-plugin</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.switchyard</groupId>
+      <artifactId>switchyard-test</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.switchyard.components</groupId>
+      <artifactId>switchyard-component-camel</artifactId>
+    </dependency>
+  </dependencies>
+  <build>
+    <finalName>${project.artifactId}</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+       <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <configuration>
+             <archive>
+                <manifestEntries>
+                   <Dependencies>org.apache.camel.activemq</Dependencies>
+                </manifestEntries>
+             </archive>
+          </configuration>
+       </plugin>
+    </plugins>
+	<resources>
+		<resource>
+			<directory>${basedir}/src/main/resources</directory>
+			<filtering>true</filtering>
+		</resource>
+	</resources>
+  </build>
+</project>
